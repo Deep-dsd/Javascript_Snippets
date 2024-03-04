@@ -1,24 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { projectData } from "../data";
+import Card from "./Card";
+import { useAppContext } from "../context";
 
 const Projects = () => {
+  const { filteredProjects, filterHandler, filterTag } = useAppContext();
+
   return (
     <Wrapper>
       <h3>My Projects</h3>
       <div className="filter-container">
-        <div className="btn active">All</div>
-        <div className="btn">React</div>
-        <div className="btn">JavaScript</div>
+        <div
+          className={`${filterTag === "all" && "active"} btn`}
+          onClick={(e) => filterHandler(e.target.id)}
+          id="all"
+        >
+          All
+        </div>
+        <div
+          className={`${filterTag === "react" && "active"} btn`}
+          onClick={(e) => filterHandler(e.target.id)}
+          id="react"
+        >
+          React
+        </div>
+        <div
+          className={`${filterTag === "js" && "active"} btn`}
+          onClick={(e) => filterHandler(e.target.id)}
+          id="js"
+        >
+          JavaScript
+        </div>
       </div>
       <div className="project-container">
-        <div className="card">
-          <a href="www.google.com" target="_blank">
-            <img src={projectData[0].img} alt="" />
-          </a>
-
-          <h4>{projectData[0].name}</h4>
-        </div>
+        {filteredProjects.map((project) => {
+          return <Card key={project.id} {...project} />;
+        })}
       </div>
     </Wrapper>
   );
@@ -30,6 +47,7 @@ const Wrapper = styled.section`
   margin: 0 0.5rem;
   background-color: #e2e8f0;
   text-align: center;
+
   h3 {
     display: inline-block;
     margin: 4rem 0 1.5rem 0;
@@ -76,39 +94,19 @@ const Wrapper = styled.section`
   }
   .project-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
     padding-bottom: 2rem;
+    max-width: 1500px;
   }
 
-  .card {
-    box-shadow: 0 0 10px 0 gray;
-    min-width: 300px;
-    width: 450px;
-    border-radius: 3px;
-    transition: ease-in 150ms;
-    background-color: white;
-    a {
-      margin-bottom: 0;
+  /* @media (min-width: 1433px) {
+    .project-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      
     }
-    a img {
-      width: 100%;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-      margin-bottom: 0;
-    }
-    h4 {
-      font-family: "Inconsolata", monospace;
-      font-size: 1.7rem;
-      font-weight: 400;
-      letter-spacing: 1px;
-      text-shadow: 0 0 1px black;
-      margin-bottom: 0.5rem;
-      user-select: none;
-    }
-  }
-
-  .card:hover {
-    transform: scale(1.006);
-  }
+  } */
 `;

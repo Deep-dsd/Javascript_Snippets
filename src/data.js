@@ -30,7 +30,7 @@ import random_user from "./assets/reactjs/random_user.png";
 import stock_photos from "./assets/reactjs/stock_photos.png";
 import todo_list from "./assets/reactjs/todo_list.png";
 
-export const projectData = [
+const projectData = [
   {
     id: 1,
     img: animated_template,
@@ -228,3 +228,5 @@ export const projectData = [
     tag: "react",
   },
 ];
+
+export default projectData;

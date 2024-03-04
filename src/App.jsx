@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import Projects from "./components/Projects";
+import hero_image from "./assets/hero_img.svg";
+import { useAppContext } from "./context";
 function App() {
   return (
     <main>
       <Wrapper>
-        <h3 className="heading">My Projects</h3>
-        <p className="intro-para">
-          Projets are the most practical way to learn any language. This is a
-          collection of some basic and intermediate level projects using
-          <span>React</span> and <span>JavaScript</span>.
-        </p>
+        <div className="text-container">
+          <h3 className="heading">My Projects</h3>
+          <p className="intro-para">
+            Projets are the most practical way to learn any language. This is a
+            collection of some basic and intermediate level projects using
+            <span>React</span> and <span>JavaScript</span>.
+          </p>
+        </div>
+        <img src={hero_image} alt="hero image" className="hero-img" />
       </Wrapper>
       <Projects />
     </main>
@@ -58,6 +63,31 @@ const Wrapper = styled.section`
       height: 2px;
       bottom: 4px;
       background-color: #055f82b4;
+    }
+  }
+
+  .hero-img {
+    display: none;
+    width: 400px;
+  }
+
+  @media (max-width: 390px) {
+    .heading {
+      font-size: 3.5rem;
+    }
+  }
+
+  @media (min-width: 980px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    .hero-img {
+      display: block;
+    }
+    .text-container {
+      width: 45%;
+      max-width: 50%;
     }
   }
 `;
