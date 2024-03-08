@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = ({ name, img }) => {
+const Card = ({ name, img, link }) => {
   return (
     <Wrapper>
       <div className="img">
-        <a href="www.google.com" target="_blank">
+        <a href={link} target="_blank">
           <img src={img} alt={name} />
         </a>
       </div>
